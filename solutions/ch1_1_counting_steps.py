@@ -5,8 +5,11 @@
 # PROMPT: Write `is_leap_year(year)`. Explain why its step count does not depend on the input's size.
 # EXAMPLE: `is_leap_year(2024)` -> `True`; `1900` -> `False`; `2000` -> `True`
 # BIGO: O(1). At most three checks, whatever the year.
+from math import inf
+
+
 def is_leap_year(year):
-    raise NotImplementedError
+    return year % 4 == 0 and (year % 400 == 0 or year % 100 != 0)
 # ==== END
 
 
@@ -15,7 +18,12 @@ def is_leap_year(year):
 # EXAMPLE: `[1, 2, 3, 4]` -> `10`, 4 loop steps
 # BIGO: O(N). One step per element.
 def array_sum(arr):
-    raise NotImplementedError
+    sum = 0
+
+    for num in arr:
+        sum += num
+
+    return sum
 # ==== END
 
 
@@ -24,7 +32,13 @@ def array_sum(arr):
 # EXAMPLE: `halving_steps(8)` -> `3`; `halving_steps(1024)` -> `10`; `halving_steps(1)` -> `0`
 # BIGO: O(log N). This is the definition of log2 N for powers of two.
 def halving_steps(n):
-    raise NotImplementedError
+    steps = 0
+
+    while n > 1:
+        n //= 2
+        steps += 1
+
+    return steps
 # ==== END
 
 
@@ -33,7 +47,14 @@ def halving_steps(n):
 # EXAMPLE: `rounds_to_reach(1)` -> `0`; `rounds_to_reach(2)` -> `1`; `rounds_to_reach(1000)` -> `10`
 # BIGO: O(log N). The number who know doubles each round, the mirror image of halving.
 def rounds_to_reach(people):
-    raise NotImplementedError
+    rounds = 0
+    known_people = 1
+
+    while known_people < people:
+        known_people *= 2
+        rounds += 1
+
+    return rounds
 # ==== END
 
 
@@ -42,11 +63,22 @@ def rounds_to_reach(people):
 # EXAMPLE: `all_pairs_steps(4)` -> `16`; `unique_pairs_steps(4)` -> `6`
 # BIGO: Both O(N^2). Unique pairs is N(N-1)/2, about half, and Big O ignores the 1/2.
 def all_pairs_steps(n):
-    raise NotImplementedError
+    steps = 0
 
+    for i in range(n):
+        for j in range(n):
+            steps += 1
+
+    return steps
 
 def unique_pairs_steps(n):
-    raise NotImplementedError
+    steps = 0
+
+    for i in range(n):
+        for j in range(i + 1, n):
+            steps += 1
+
+    return steps
 # ==== END
 
 
@@ -55,7 +87,13 @@ def unique_pairs_steps(n):
 # EXAMPLE: `[50, -20, -40, 10]` -> `40`
 # BIGO: O(N). One pass, and each step does a constant amount of work.
 def final_balance(changes):
-    raise NotImplementedError
+    balance = 0
+
+    for change in changes: 
+        if balance + change >= 0:
+            balance += change
+
+    return balance
 # ==== END
 
 
@@ -64,7 +102,14 @@ def final_balance(changes):
 # EXAMPLE: `['ana', 'bo', 'cy']` -> `['ana-bo', 'ana-cy', 'bo-cy']`
 # BIGO: O(N^2): N(N-1)/2 pairings, each built once.
 def pairings(names):
-    raise NotImplementedError
+    pairs = []
+    names_count = len(names)
+    
+    for i in range(names_count - 1):
+        for j in range(i + 1, names_count):
+            pairs.append(f"{names[i]}-{names[j]}")
+
+    return pairs
 # ==== END
 
 
@@ -73,7 +118,16 @@ def pairings(names):
 # EXAMPLE: `['a', 'b', 'c', 'd']` -> `['a,b,c', 'a,b,d', 'a,c,d', 'b,c,d']`
 # BIGO: O(N^3): about N^3/6 committees. Each extra nested loop over the same input adds one to the exponent.
 def committees(names):
-    raise NotImplementedError
+    result = []
+    names_count = len(names)
+
+    for i in range(names_count - 2):
+        for j in range(i + 1, names_count - 1):
+            for k in range(j + 1, names_count):
+                # result.append(names[i] + ',' + names[j] + ',' + names[k])
+                result.append(f"{names[i]},{names[j]},{names[k]}")
+    
+    return result
 # ==== END
 
 
@@ -82,7 +136,13 @@ def committees(names):
 # EXAMPLE: `['a', 'b', 'c', 'd'], 2` -> `['c', 'd']`
 # BIGO: O(k), not O(N). Reading by index jumps straight to the end, so the length of the log does not matter.
 def newest(lines, k):
-    raise NotImplementedError
+    # if k == 0: 
+    #     return []
+
+    # return lines[-k:]
+
+    start = max(0, len(lines) - k)
+    return [lines[i] for i in range(start, len(lines))]
 # ==== END
 
 
@@ -91,7 +151,17 @@ def newest(lines, k):
 # EXAMPLE: `['09:15', '10:02', '09:40', '11:00']` -> `9`
 # BIGO: O(N). One pass counts into 24 slots, then a fixed 24-step scan; a constant amount of extra work does not change the class.
 def busiest_hour(times):
-    raise NotImplementedError
+    hours = [0] * 24
+
+    for time in times:
+        hours[int(time[:2])] += 1
+
+    result = 0
+    for hour in range(len(hours)):
+        if hours[hour] > hours[result]:
+            result = hour
+    
+    return result
 # ==== END
 
 
@@ -103,7 +173,13 @@ DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 
 
 def weekly_slots(names):
-    raise NotImplementedError
+    slots = []
+
+    for name in names: 
+        for day in DAYS: 
+            slots.append(name + ' ' + day)
+
+    return slots
 # ==== END
 
 
@@ -112,7 +188,13 @@ def weekly_slots(names):
 # EXAMPLE: `['Hello', 'World']` -> `3`
 # BIGO: O(C) where C is the total number of characters. The loops are nested, but together they visit each character once.
 def count_vowels(lines):
-    raise NotImplementedError
+    count = 0
+    for line in lines:
+        for char in line:
+            if char in 'aeiouAEIOU':
+                count += 1
+
+    return count
 # ==== END
 
 
@@ -121,7 +203,14 @@ def count_vowels(lines):
 # EXAMPLE: `[[1, 2], [2, 1]]` -> `True`; `[[1, 2], [3, 1]]` -> `False`
 # BIGO: O(N^2) for an N x N grid. Checking only above the diagonal halves the work, and Big O ignores the half.
 def is_symmetric(grid):
-    raise NotImplementedError
+    rows = len(grid)
+
+    for row in range(rows):
+        for col in range(row + 1, rows):
+            if grid[row][col] != grid[col][row]:
+                return False
+
+    return True
 # ==== END
 
 
@@ -131,7 +220,23 @@ def is_symmetric(grid):
 # BIGO: O(N^2): every pair is compared once.
 # NOTE: Sorting first brings this to O(N log N) (3.2.4).
 def closest_gap(nums):
-    raise NotImplementedError
+    result = abs(nums[0] - nums[1])
+
+    for i in range(len(nums) - 1):
+        for j in range(i + 1, len(nums)):
+            result = min(result, abs(nums[i] - nums[j]))
+
+    return result
+    
+    # result = float(inf)
+    
+    # for i in range(len(nums) - 1):
+    #     for j in range(i + 1, len(nums)):
+    #         current_diff = abs(nums[i] - nums[j])
+    #         if current_diff < result:
+    #             result = current_diff
+
+    # return result
 # ==== END
 
 
@@ -141,7 +246,15 @@ def closest_gap(nums):
 # BIGO: O(N * M) with nested loops. With two different inputs, name both sizes instead of writing O(N^2).
 # NOTE: Putting one list in a hash set makes it O(N + M) (Chapter 4.1).
 def shared_hours(a, b):
-    raise NotImplementedError
+    result = []
+
+    for x in a:
+        for y in b:
+            if x == y:
+                result.append(x)
+                break
+
+    return result
 # ==== END
 
 
