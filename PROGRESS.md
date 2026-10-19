@@ -2,13 +2,13 @@
 
 <!-- Written by tools/progress.py on every push. Edits here are overwritten. -->
 
-**0 of 445 exercises pass (0%).** Last run 2026-10-19 at commit 139d5a9.
+**15 of 445 exercises pass (3%).** Last run 2026-10-19 at commit 4ed75ef.
 
 ## Cost and measurement
 
 | Ch | Chapter | Done | Exercises |
 | ---: | --- | ---: | --- |
-| 1.1 | Counting steps: how cost grows with input | 0/16 | ⬜&nbsp;1.1.1 ⬜&nbsp;1.1.2 ⬜&nbsp;1.1.3 ⬜&nbsp;1.1.4 ⬜&nbsp;1.1.5 ⬜&nbsp;1.1.6 ⬜&nbsp;1.1.7 ⬜&nbsp;1.1.8 ⬜&nbsp;1.1.9 ⬜&nbsp;1.1.10 ⬜&nbsp;1.1.11 ⬜&nbsp;1.1.12 ⬜&nbsp;1.1.13 ⬜&nbsp;1.1.14 ⬜&nbsp;1.1.15 ⬜&nbsp;1.1.16 |
+| 1.1 | Counting steps: how cost grows with input | 15/16 | ✅&nbsp;1.1.1 ✅&nbsp;1.1.2 ✅&nbsp;1.1.3 ✅&nbsp;1.1.4 ✅&nbsp;1.1.5 ✅&nbsp;1.1.6 ✅&nbsp;1.1.7 ✅&nbsp;1.1.8 ✅&nbsp;1.1.9 ✅&nbsp;1.1.10 ✅&nbsp;1.1.11 ✅&nbsp;1.1.12 ✅&nbsp;1.1.13 ✅&nbsp;1.1.14 ✅&nbsp;1.1.15 ⬜&nbsp;1.1.16 |
 | 1.2 | Memory as a cost | 0/5 | ⬜&nbsp;1.2.1 ⬜&nbsp;1.2.2 ⬜&nbsp;1.2.3 ⬜&nbsp;1.2.4 ⬜&nbsp;1.2.5 |
 | 1.3 | Timing real code | 0/7 | ⬜&nbsp;1.3.1 ⬜&nbsp;1.3.2 ⬜&nbsp;1.3.3 ⬜&nbsp;1.3.4 ⬜&nbsp;1.3.5 ⬜&nbsp;1.3.6 ⬜&nbsp;1.3.7 |
 
