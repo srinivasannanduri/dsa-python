@@ -40,7 +40,7 @@ def bench_sort(sort_fn, data, repeat=5):
     
     return best
 # ==== END
-
+    
 
 # ==== EX 1.3.4 | Read the Big O off a benchmark | Core
 # PROMPT: Write `growth_exponent(timings)` that takes `{n: seconds}` for several sizes and returns the slope of log(time) against log(n). A slope near 1 means O(N), near 2 means O(N^2).

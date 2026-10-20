@@ -2,7 +2,7 @@
 
 <!-- Written by tools/progress.py on every push. Edits here are overwritten. -->
 
-**23 of 445 exercises pass (5%).** Last run 2026-10-20 at commit 9e0883b.
+**37 of 445 exercises pass (8%).** Last run 2026-10-20.
 
 ## Cost and measurement
 
@@ -16,7 +16,7 @@
 
 | Ch | Chapter | Done | Exercises |
 | ---: | --- | ---: | --- |
-| 2.1 | Arrays and dynamic arrays | 0/26 | ⬜&nbsp;2.1.1 ⬜&nbsp;2.1.2 ⬜&nbsp;2.1.3 ⬜&nbsp;2.1.4 ⬜&nbsp;2.1.5 ⬜&nbsp;2.1.6 ⬜&nbsp;2.1.7 ⬜&nbsp;2.1.8 ⬜&nbsp;2.1.9 ⬜&nbsp;2.1.10 ⬜&nbsp;2.1.11 ⬜&nbsp;2.1.12 ⬜&nbsp;2.1.13 ⬜&nbsp;2.1.14 ⬜&nbsp;2.1.15 ⬜&nbsp;2.1.16 ⬜&nbsp;2.1.17 ⬜&nbsp;2.1.18 ⬜&nbsp;2.1.19 ⬜&nbsp;2.1.20 ⬜&nbsp;2.1.21 ⬜&nbsp;2.1.22 ⬜&nbsp;2.1.23 ⬜&nbsp;2.1.24 ⬜&nbsp;2.1.25 ⬜&nbsp;2.1.26 |
+| 2.1 | Arrays and dynamic arrays | 14/26 | ✅&nbsp;2.1.1 ✅&nbsp;2.1.2 ✅&nbsp;2.1.3 ✅&nbsp;2.1.4 ✅&nbsp;2.1.5 ✅&nbsp;2.1.6 ✅&nbsp;2.1.7 ✅&nbsp;2.1.8 ✅&nbsp;2.1.9 ✅&nbsp;2.1.10 ✅&nbsp;2.1.11 ✅&nbsp;2.1.12 ✅&nbsp;2.1.13 ✅&nbsp;2.1.14 ⬜&nbsp;2.1.15 ⬜&nbsp;2.1.16 ⬜&nbsp;2.1.17 ⬜&nbsp;2.1.18 ⬜&nbsp;2.1.19 ⬜&nbsp;2.1.20 ⬜&nbsp;2.1.21 ⬜&nbsp;2.1.22 ⬜&nbsp;2.1.23 ⬜&nbsp;2.1.24 ⬜&nbsp;2.1.25 ⬜&nbsp;2.1.26 |
 | 2.2 | Searching sorted data | 0/16 | ⬜&nbsp;2.2.1 ⬜&nbsp;2.2.2 ⬜&nbsp;2.2.3 ⬜&nbsp;2.2.4 ⬜&nbsp;2.2.5 ⬜&nbsp;2.2.6 ⬜&nbsp;2.2.7 ⬜&nbsp;2.2.8 ⬜&nbsp;2.2.9 ⬜&nbsp;2.2.10 ⬜&nbsp;2.2.11 ⬜&nbsp;2.2.12 ⬜&nbsp;2.2.13 ⬜&nbsp;2.2.14 ⬜&nbsp;2.2.15 ⬜&nbsp;2.2.16 |
 | 2.3 | Linked lists | 0/28 | ⬜&nbsp;2.3.1 ⬜&nbsp;2.3.2 ⬜&nbsp;2.3.3 ⬜&nbsp;2.3.4 ⬜&nbsp;2.3.5 ⬜&nbsp;2.3.6 ⬜&nbsp;2.3.7 ⬜&nbsp;2.3.8 ⬜&nbsp;2.3.9 ⬜&nbsp;2.3.10 ⬜&nbsp;2.3.11 ⬜&nbsp;2.3.12 ⬜&nbsp;2.3.13 ⬜&nbsp;2.3.14 ⬜&nbsp;2.3.15 ⬜&nbsp;2.3.16 ⬜&nbsp;2.3.17 ⬜&nbsp;2.3.18 ⬜&nbsp;2.3.19 ⬜&nbsp;2.3.20 ⬜&nbsp;2.3.21 ⬜&nbsp;2.3.22 ⬜&nbsp;2.3.23 ⬜&nbsp;2.3.24 ⬜&nbsp;2.3.25 ⬜&nbsp;2.3.26 ⬜&nbsp;2.3.27 ⬜&nbsp;2.3.28 |
 | 2.4 | Stacks and queues | 0/20 | ⬜&nbsp;2.4.1 ⬜&nbsp;2.4.2 ⬜&nbsp;2.4.3 ⬜&nbsp;2.4.4 ⬜&nbsp;2.4.5 ⬜&nbsp;2.4.6 ⬜&nbsp;2.4.7 ⬜&nbsp;2.4.8 ⬜&nbsp;2.4.9 ⬜&nbsp;2.4.10 ⬜&nbsp;2.4.11 ⬜&nbsp;2.4.12 ⬜&nbsp;2.4.13 ⬜&nbsp;2.4.14 ⬜&nbsp;2.4.15 ⬜&nbsp;2.4.16 ⬜&nbsp;2.4.17 ⬜&nbsp;2.4.18 ⬜&nbsp;2.4.19 ⬜&nbsp;2.4.20 |

@@ -6,6 +6,13 @@
 # EXAMPLE: `[4, 2, 7, 1, 3]` -> `[1, 2, 3, 4, 7]`
 # BIGO: O(N^2) time, O(1) space. About N^2/2 comparisons plus up to N^2/2 swaps.
 def bubble_sort(arr):
+    left = 0
+    right = len(arr)
+    
+    while left < right:
+        for i in len(arr):
+        if arr[left] > arr[right]:
+            arr[right] = arr[left]
     raise NotImplementedError
 # ==== END
 

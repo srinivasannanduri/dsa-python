@@ -1,29 +1,32 @@
 """Chapter 2.1: Arrays and dynamic arrays."""
 
-
 # ==== EX 2.1.1 | Fixed-capacity Array skeleton | Core | class=Array
 # PROMPT: Create class `Array(capacity)` backed by `[None] * capacity` with a `length` counter and a `steps` counter. Add `__len__`, `is_empty()`, `is_full()`, `to_list()` and `reset_steps()`.
 # EXAMPLE: `a = Array(5); len(a) -> 0; a.is_full() -> False`
 # BIGO: All O(1) except `to_list()`, which is O(N).
 # NOTE: Capacity is fixed, like a real block of memory. Python lists hide this by over-allocating; this class makes the cost of every shift visible.
 class Array:
+    
     def __init__(self, capacity):
-        raise NotImplementedError
+        self.capacity = capacity
+        self.data = [None] * capacity
+        self.length = 0
+        self.steps = 0
 
     def __len__(self):
-        raise NotImplementedError
+        return self.length
 
     def is_empty(self):
-        raise NotImplementedError
+        return self.length == 0
 
     def is_full(self):
-        raise NotImplementedError
+        return self.length == self.capacity
 
     def to_list(self):
-        raise NotImplementedError
+        return [self.data[i] for i in range(self.length)]
 
     def reset_steps(self):
-        raise NotImplementedError
+        self.steps = 0
 # ==== END
 
     # ==== EX 2.1.2 | Read by index | Core | class=Array
@@ -32,7 +35,11 @@ class Array:
     # BIGO: O(1) time. The computer jumps straight to the memory address.
     # NOTE: Check against `length`, not `capacity`: slots past the length hold no real data.
     def read(self, index):
-        raise NotImplementedError
+        if index < 0 or index >= self.length:
+            raise IndexError("index out or range")
+        
+        self.steps += 1
+        return self.data[index]
     # ==== END
 
     # ==== EX 2.1.3 | Read the first and last element | Core | class=Array
@@ -41,10 +48,10 @@ class Array:
     # BIGO: O(1) each. Knowing `length` makes the last slot one jump away.
     # NOTE: The edges matter: insertion and deletion at the end are cheap only because the end is found in one step.
     def first(self):
-        raise NotImplementedError
+        return None if self.is_empty() else self.read(0)
 
     def last(self):
-        raise NotImplementedError
+        return None if self.is_empty() else self.read(self.length - 1)
     # ==== END
 
     # ==== EX 2.1.4 | Update by index | Core | class=Array
@@ -52,7 +59,11 @@ class Array:
     # EXAMPLE: `[1, 2, 3]` -> `update(0, 9)` -> `[9, 2, 3]`
     # BIGO: O(1) time.
     def update(self, index, value):
-        raise NotImplementedError
+        if index < 0 or index >= self.length:
+            raise IndexError("index out or range")
+        
+        self.steps += 1
+        self.data[index] = value
     # ==== END
 
     # ==== EX 2.1.5 | Linear search | Core | class=Array
@@ -60,7 +71,12 @@ class Array:
     # EXAMPLE: `[5, 3, 7]` -> `search(7)` is `2` after 3 steps; `search(9)` is `-1` after 3 steps
     # BIGO: O(N) worst case, O(1) best case (match in slot 0).
     def search(self, value):
-        raise NotImplementedError
+        for i in range(self.length):
+            self.steps += 1
+            if self.data[i] == value:
+                return i
+
+        return -1
     # ==== END
 
     # ==== EX 2.1.6 | Membership test | Core | class=Array
@@ -68,7 +84,7 @@ class Array:
     # EXAMPLE: `[5, 3, 7]` -> `contains(3)` is `True`
     # BIGO: O(N). This is what `x in some_list` costs in Python.
     def contains(self, value):
-        raise NotImplementedError
+        return self.search(value) != -1
     # ==== END
 
     # ==== EX 2.1.7 | Insert at the end | Core | class=Array
@@ -76,7 +92,12 @@ class Array:
     # EXAMPLE: `[1, 2]` -> `insert_at_end(3)` -> `[1, 2, 3]` in 1 step
     # BIGO: O(1). Nothing has to move.
     def insert_at_end(self, value):
-        raise NotImplementedError
+        if self.is_full():
+            raise OverflowError("array is full")
+        
+        self.data[self.length] = value
+        self.length += 1
+        self.steps += 1
     # ==== END
 
     # ==== EX 2.1.8 | Insert at the start | Core | class=Array
@@ -85,7 +106,7 @@ class Array:
     # BIGO: O(N). Worst case for array insertion: N shifts + 1 write = N + 1 steps.
     # NOTE: Shift from the right end backwards. Shifting from the left would overwrite values before they move.
     def insert_at_start(self, value):
-        raise NotImplementedError
+        self.insert_at(0, value)
     # ==== END
 
     # ==== EX 2.1.9 | Insert at an index | Core | class=Array
@@ -93,7 +114,19 @@ class Array:
     # EXAMPLE: `[1, 2, 4]` -> `insert_at(2, 3)` -> `[1, 2, 3, 4]` in 2 steps
     # BIGO: O(N - index): N + 1 steps at the start, 1 step at the end.
     def insert_at(self, index, value):
-        raise NotImplementedError
+        if self.is_full():
+            raise OverflowError("array is full")
+        
+        if index < 0 or index > self.length:
+            raise IndexError("index our of range")
+        
+        for i in range(self.length, index, - 1):
+            self.data[i] = self.data[i - 1]
+            self.steps += 1
+
+        self.data[index] = value
+        self.length += 1
+        self.steps += 1
     # ==== END
 
     # ==== EX 2.1.10 | Delete at the end | Core | class=Array
@@ -101,7 +134,14 @@ class Array:
     # EXAMPLE: `[1, 2, 3]` -> returns `3`, leaves `[1, 2]`, 1 step
     # BIGO: O(1).
     def delete_at_end(self):
-        raise NotImplementedError
+        if self.is_empty():
+            raise IndexError("delete from empty array")
+
+        self.length -= 1
+        value = self.data[self.length]
+        self.data[self.length] = None
+        self.steps += 1
+        return value
     # ==== END
 
     # ==== EX 2.1.11 | Delete at the start | Core | class=Array
@@ -109,7 +149,7 @@ class Array:
     # EXAMPLE: `[1, 2, 3, 4]` -> returns `1`, leaves `[2, 3, 4]` in 4 steps (1 delete + 3 shifts)
     # BIGO: O(N). Worst case for deletion: 1 delete + (N - 1) shifts = N steps.
     def delete_at_start(self):
-        raise NotImplementedError
+        return self.delete_at(0)
     # ==== END
 
     # ==== EX 2.1.12 | Delete at an index | Core | class=Array
@@ -117,7 +157,18 @@ class Array:
     # EXAMPLE: `[1, 2, 9, 3]` -> `delete_at(2)` returns `9`, leaves `[1, 2, 3]`
     # BIGO: O(N - index).
     def delete_at(self, index):
-        raise NotImplementedError
+        if index < 0 or index >= self.length:
+            raise IndexError("index out of range")
+
+        value = self.data[index]
+        self.steps += 1
+        for i in range(index, self.length - 1):
+            self.data[i] = self.data[i + 1]
+            self.steps += 1
+
+        self.length -= 1
+        self.data[self.length] = None
+        return value
     # ==== END
 
     # ==== EX 2.1.13 | Delete by value | Core | class=Array
@@ -126,7 +177,12 @@ class Array:
     # BIGO: O(N) in every case: the search and the shifts together touch every element once.
     # NOTE: If the match is near the front, search is short but shifting is long, and the reverse near the back.
     def delete_value(self, value):
-        raise NotImplementedError
+        index = self.search(value)
+        if index == -1:
+            return False
+
+        self.delete_at(index)
+        return True
     # ==== END
 
 
@@ -135,11 +191,19 @@ class Array:
 # EXAMPLE: `find_all_indices([3, 1, 3, 3], 3)` -> `[0, 2, 3]`; count is `3`
 # BIGO: O(N) time; O(1) space for the count, O(K) for the K indices returned.
 def count_occurrences(arr, value):
-    raise NotImplementedError
+    count = 0
+    for x in arr:
+        if x == value:
+            count += 1
+    return count
 
 
 def find_all_indices(arr, value):
-    raise NotImplementedError
+    indices = []
+    for i in range(len(arr)):
+        if arr[i] == value:
+            indices.append(i)
+    return indices
 # ==== END
 
 
@@ -148,7 +212,19 @@ def find_all_indices(arr, value):
 # EXAMPLE: `[7, -2, 9, 4]` -> `(-2, 9)`
 # BIGO: O(N) time, O(1) space.
 def find_min_max(arr):
-    raise NotImplementedError
+    if not arr:
+        return None
+
+    min = arr[0]
+    max = arr[len(arr) - 1]
+
+    for num in arr:
+        if num < min:
+            min = num
+        if num > max:
+            max = num
+    
+    return (min, max)
 # ==== END
 
 
@@ -157,7 +233,13 @@ def find_min_max(arr):
 # EXAMPLE: `[1, 2, 3, 4, 5]` -> `[5, 4, 3, 2, 1]`
 # BIGO: O(N) time (N/2 swaps), O(1) extra space.
 def reverse_in_place(arr):
-    raise NotImplementedError
+    left, right = 0, len(arr) - 1
+    while left < right:
+        arr[left], arr[right] = arr[right], arr[left]
+        left += 1
+        right -= 1
+
+    return arr
 # ==== END
 
 
@@ -168,10 +250,14 @@ def reverse_in_place(arr):
 # NOTE: One rule (no duplicates) turns the cheapest operation into a linear one. That is the chapter's central lesson.
 class ArraySet(Array):
     def add(self, value):
-        raise NotImplementedError
+        if self.contains(value):
+            return False
+
+        Array.insert_at_end(self, value)
+        return True
 
     def insert_at_end(self, value):
-        raise NotImplementedError
+        return self.add(value)
 # ==== END
 
 
