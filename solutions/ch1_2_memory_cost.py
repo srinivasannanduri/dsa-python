@@ -87,6 +87,14 @@ def recursion_limit():
 # EXAMPLE: `[1, 2, 3, 4, 5], 2` -> `[4, 5, 1, 2, 3]`
 # BIGO: Copy: O(N) time, O(N) space. Three reversals: O(N) time, O(1) space.
 def rotate_copy(arr, k):
+    if not arr:
+        return []
+
+    k %= len(arr)
+    
+    if k == 0:
+        return list(arr)
+    
     return arr[-k:] + arr[:-k]
 
 
@@ -122,7 +130,7 @@ def is_palindrome_clean(s):
         else:
             if s[left].lower() != s[right].lower():
                 return False
-                
+
             left += 1
             right -= 1
 
