@@ -9,7 +9,9 @@ import timeit
 # EXAMPLE: `time_once(sum, range(10**6))` -> `(499999500000, 0.01...)`
 # BIGO: O(1) overhead. `perf_counter` is the highest-resolution clock; `time.time` can jump when the system clock changes.
 def time_once(fn, *args):
-    raise NotImplementedError
+    start = time.perf_counter()
+    result = fn(*args)
+    return result, time.perf_counter() - start
 # ==== END
 
 
@@ -19,7 +21,7 @@ def time_once(fn, *args):
 # BIGO: O(number * repeat) calls.
 # NOTE: Background noise only ever makes a run slower, so the fastest run is closest to the code's true cost.
 def bench(stmt, number=100, repeat=5):
-    raise NotImplementedError
+    return min(timeit.repeat(stmt, number=number, repeat=repeat)) / number
 # ==== END
 
 
@@ -29,7 +31,14 @@ def bench(stmt, number=100, repeat=5):
 # BIGO: O(repeat * cost of sort_fn).
 # NOTE: An in-place sort leaves the list sorted, so runs 2..n time an already sorted input and look far faster than they are.
 def bench_sort(sort_fn, data, repeat=5):
-    raise NotImplementedError
+    best = float("inf")
+    for _ in range(repeat):
+        copy = list(data)
+        start = time.perf_counter()
+        sort_fn(copy)
+        best = min(best, time.perf_counter() - start)
+    
+    return best
 # ==== END
 
 
